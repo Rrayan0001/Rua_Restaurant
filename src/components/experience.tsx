@@ -94,7 +94,10 @@ export function Header() {
   return (
     <header ref={header} className={`header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
       <div className="wrap header-inner">
-        <a href="#" className="brand" aria-label="Rua home" onClick={() => setOpen(false)}>rua<span>YELAHANKA</span></a>
+        <a href="#" className="brand" aria-label="Rua home" onClick={() => setOpen(false)}>
+          <Image src="/images/logo.png" alt="Rua" width={64} height={61} priority className="brand-logo-img" />
+          <span className="brand-sub">YELAHANKA</span>
+        </a>
         <button ref={toggle} className="menu-toggle" aria-expanded={open} aria-controls="main-nav" aria-label={open ? "Close navigation" : "Open navigation"} onClick={() => setOpen(!open)}>
           <span className="menu-icon" aria-hidden="true"><span /><span /></span>
         </button>

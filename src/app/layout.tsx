@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "/images/hero.jpg", width: 1600, height: 1066, alt: "Rua Yelahanka's courtyard pergola strung with festoon lights" }],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
   twitter: { card: "summary_large_image" },
 };
 

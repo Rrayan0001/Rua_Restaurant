@@ -20,8 +20,8 @@
 .hero-eyebrow { animation-duration: .65s; animation-delay: 0s; }
 .hero-content > p { animation-duration: .65s; animation-delay: .15s; }
 .hero-actions { animation: none; }
-.round-stamp svg { animation-play-state: paused; }
-.round-stamp.ambient-visible svg { animation-play-state: running; }
+.round-stamp > svg { animation-play-state: paused; }
+.round-stamp.ambient-visible > svg { animation-play-state: running; }
 .reading-progress { height: 2px; position: absolute; bottom: 0; left: 0; width: 100%; background: var(--peach); transform: scaleX(0); transform-origin: left; pointer-events: none; }
 .header nav > a[aria-current="location"] { color: var(--peach); }
 .header nav > a[aria-current="location"]::after { right: 0; }
@@ -43,7 +43,7 @@
 .ribbon-flower { font-size: 24px; }
 .ribbon-control { width: 52px; height: 48px; margin-right: 8px; border: 0; border-left: 1px solid #183d3240; background: transparent; display: grid; place-items: center; }
 html[data-motion-paused="true"] .ribbon-track,
-html[data-motion-paused="true"] .round-stamp svg { animation-play-state: paused; }
+html[data-motion-paused="true"] .round-stamp > svg { animation-play-state: paused; }
 
 .story-photo { clip-path: inset(0); }
 .is-revealed .story-photo { animation: image-unveil .85s cubic-bezier(.2,.65,.2,1) both; }
@@ -310,7 +310,7 @@ html[data-motion-paused="true"] .round-stamp svg { animation-play-state: paused;
 @keyframes photograph-depth { from { transform: translateY(-3%); } to { transform: translateY(3%); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-line > span, .hero-line > em, .hero-image, .ribbon-track, .round-stamp svg,
+  .hero-line > span, .hero-line > em, .hero-image, .ribbon-track, .round-stamp > svg,
   .is-revealed .story-photo, .is-revealed .photo-note, .is-revealed .story-arch path,
   .is-revealed .visit-arch path, .interlude > img { animation: none !important; }
   .ribbon-control { display: none; }

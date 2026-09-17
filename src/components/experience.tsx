@@ -7,6 +7,7 @@ import { useEffect, useRef, useState, type ReactNode, type KeyboardEvent, type M
 import { flavours, restaurant } from "@/lib/restaurant";
 import { gallery } from "@/lib/gallery";
 import { useScrollLock } from "./use-scroll-lock";
+import { BrandStar } from "./brand-star";
 
 const GalleryLightbox = dynamic(() => import("./gallery-lightbox"), { ssr: false });
 const links = [
@@ -148,7 +149,7 @@ export function MotionRibbon() {
   const words = ["NORTH INDIAN SOUL", "A TABLE FOR EVERY STORY", "YELAHANKA, WITH LOVE", "MAKE YOURSELF AT HOME"];
   return <div className="welcome-ribbon" ref={ribbon}>
     <div className="ribbon-window" tabIndex={0} role="region" aria-label="Rua welcome messages"><div className="ribbon-track">
-      {[0, 1].map(copy => <div className="ribbon-group" key={copy} aria-hidden={copy === 1 ? true : undefined}>{words.map(word => <span key={word}>{word}<span className="ribbon-flower" aria-hidden="true">✳</span></span>)}</div>)}
+      {[0, 1].map(copy => <div className="ribbon-group" key={copy} aria-hidden={copy === 1 ? true : undefined}>{words.map(word => <span key={word}>{word}<span className="ribbon-flower" aria-hidden="true"><BrandStar /></span></span>)}</div>)}
     </div></div>
     <button className="ribbon-control" aria-label={paused ? "Play ambient motion" : "Pause ambient motion"} aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? <Play size={16} /> : <Pause size={16} />}</button>
   </div>;

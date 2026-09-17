@@ -1,7 +1,7 @@
 import { getImageProps } from "next/image";
 
 export function HeroImage() {
-  const shared = { alt: "Warm wood, soft light, and an inviting dining room — illustrative restaurant photography", fill: true, sizes: "100vw" };
+  const shared = { alt: "Rua Yelahanka's open-air pergola strung with festoon lights over the stone courtyard", fill: true, sizes: "100vw" };
   const { props: mobile } = getImageProps({ ...shared, src: "/images/hero-mobile.jpg", quality: 65 });
   const { props: desktop } = getImageProps({ ...shared, src: "/images/hero.jpg", quality: 75 });
   return <>

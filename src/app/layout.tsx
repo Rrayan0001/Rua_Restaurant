@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "North Indian flavours. Unhurried moments. Your next favourite table in Yelahanka, Bengaluru.",
     locale: "en_IN",
     type: "website",
-    images: [{ url: "/images/hero.jpg", width: 1920, height: 1280, alt: "Warm, atmospheric restaurant interior — illustrative imagery" }],
+    images: [{ url: "/images/hero.jpg", width: 1600, height: 1066, alt: "Rua Yelahanka's courtyard pergola strung with festoon lights" }],
   },
   twitter: { card: "summary_large_image" },
 };

@@ -41,6 +41,34 @@ for (const screen of screens) {
   });
 }
 
+test("brand decorations render as transparent vectors instead of emoji", async ({ page }, testInfo) => {
+  await page.goto("/");
+  const stars = page.locator(".brand-star");
+  await expect(stars).toHaveCount(12);
+  await expect(page.locator("body")).not.toContainText(/\u2733|\u2197/);
+  // Reduced-motion globally hides the duplicated ribbon group, so only 8 stars are visible.
+  await expect(page.locator(".brand-star:visible")).toHaveCount(8);
+  for (const star of await page.locator(".brand-star:visible").all()) {
+    await expect(star).toHaveAttribute("aria-hidden", "true");
+    expect(await star.evaluate(element => {
+      const style = getComputedStyle(element);
+      const parentStyle = getComputedStyle(element.parentElement!);
+      const box = element.getBoundingClientRect();
+      return {
+        tag: element.tagName,
+        background: style.backgroundColor,
+        matchesSize: Math.abs(parseFloat(style.width) - parseFloat(parentStyle.fontSize)) < 1,
+        hasSize: box.width > 0 && box.height > 0,
+        animation: style.animationName,
+      };
+    })).toMatchObject({ tag: "svg", background: "rgba(0, 0, 0, 0)", matchesSize: true, hasSize: true, animation: "none" });
+    await expect(star).toHaveAttribute("stroke", "currentColor");
+  }
+  await expect(page.locator(".hero-menu-link svg")).toBeVisible();
+  await expect(page.locator(".round-stamp > svg")).toHaveCount(1);
+  await page.screenshot({ path: testInfo.outputPath("vector-icons.png") });
+});
+
 test("mobile action bar appears after hero, respects overlays, and preserves scroll", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "mobile");
   await page.goto("/");
@@ -102,10 +130,10 @@ test("gallery supports real touch swipes and explicit controls", async ({ page }
 test("ambient motion can be paused and stops outside the viewport", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
-  await expect.poll(() => page.locator(".round-stamp svg").evaluate(element => getComputedStyle(element).animationPlayState)).toBe("running");
+  await expect.poll(() => page.locator(".round-stamp > svg").evaluate(element => getComputedStyle(element).animationPlayState)).toBe("running");
   await page.getByRole("button", { name: "Pause ambient motion" }).click();
   await expect.poll(() => page.locator(".ribbon-track").evaluate(element => getComputedStyle(element).animationPlayState)).toBe("paused");
-  await expect.poll(() => page.locator(".round-stamp svg").evaluate(element => getComputedStyle(element).animationPlayState)).toBe("paused");
+  await expect.poll(() => page.locator(".round-stamp > svg").evaluate(element => getComputedStyle(element).animationPlayState)).toBe("paused");
   await page.getByRole("button", { name: "Play ambient motion" }).click();
   await page.locator("#visit").scrollIntoViewIfNeeded();
   await expect.poll(() => page.locator(".ribbon-track").evaluate(element => getComputedStyle(element).animationPlayState)).toBe("paused");
@@ -113,7 +141,7 @@ test("ambient motion can be paused and stops outside the viewport", async ({ pag
 
 test("reduced motion disables ambient effects and keeps content available", async ({ page }) => {
   await page.goto("/");
-  for (const selector of [".round-stamp svg", ".ribbon-track", ".hero-image", ".hero-line > span"]) {
+  for (const selector of [".round-stamp > svg", ".ribbon-track", ".hero-image", ".hero-line > span"]) {
     await expect.poll(() => page.locator(selector).evaluate(element => getComputedStyle(element).animationName)).toBe("none");
   }
   await expect(page.getByRole("button", { name: "Pause ambient motion" })).not.toBeVisible();

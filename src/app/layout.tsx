@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import "./mobile-motion.css";
+import "./welcome.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],

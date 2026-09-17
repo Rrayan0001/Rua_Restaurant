@@ -38,6 +38,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the deployed website origin for absolute social-sh
 - A mobile Menu / Directions / Find a table bar appears after the hero passes beneath the header.
 - Native scroll-snap gallery with real touch swipes, pagination, and previous/next controls.
 - Gallery dialog code is loaded on demand; expanded photos support directional swipes.
+- A premium welcome intro: a hand-drawn doodle (Rua arch, cloche, steam, sparkle) sketches itself in peach linework, the wordmark rises, a "Setting your table" loader fills, then the veil lifts. Shows once per tab session, with Skip intro and Escape, background locking + inert content, and full bypass for reduced-motion preferences. Open `/?welcome=stay` to preview it deterministically.
 - Line-by-line hero typography, photo reveals, drawn arches, staggered food cards, and animated navigation.
 - A slow moving ribbon and rotating emblem pause offscreen. The ribbon's pause button controls both.
 - Reduced-motion preferences disable ambient effects and preserve immediate content access.

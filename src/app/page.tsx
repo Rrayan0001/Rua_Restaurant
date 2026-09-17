@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Clock3, MapPin, MoveUpRight } from "lucide-react";
 import { Header, Reveal, FlavourMenu, Gallery, BookingButton, MotionRibbon, MobileActions } from "@/components/experience";
 import { HeroImage } from "@/components/hero-image";
+import WelcomeOverlay from "@/components/welcome-overlay";
 import { restaurant } from "@/lib/restaurant";
 
 function Arch({ className = "" }: { className?: string }) {
@@ -11,6 +12,7 @@ function Arch({ className = "" }: { className?: string }) {
 export default function Home() {
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
+    <WelcomeOverlay />
     <Header />
     <main id="main">
       <section className="hero" aria-labelledby="hero-title">

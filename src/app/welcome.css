@@ -1,0 +1,151 @@
+/* Rua welcome intro: a hand-drawn doodle sketches in, then the veil lifts. */
+.welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  color: var(--cream);
+  background: radial-gradient(120% 90% at 50% 8%, #1e4c3e 0%, var(--forest-dark) 62%);
+  transition: transform 0.55s cubic-bezier(0.72, 0, 0.18, 1);
+}
+.welcome-leaving {
+  transform: translateY(-102%);
+}
+.welcome-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 44px 24px 90px;
+  animation: welcome-content-in 0.45s ease both;
+}
+.welcome-leaving .welcome-inner {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.welcome-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  color: var(--peach);
+  animation: welcome-rise 0.55s 0.1s both;
+}
+.welcome-doodle {
+  width: min(228px, 58vw);
+  height: auto;
+  margin: 24px 0 6px;
+  color: var(--peach);
+}
+.welcome-doodle path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: doodle-draw 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.welcome-doodle path:nth-of-type(2) { animation-delay: 0.12s; }
+.welcome-doodle path:nth-of-type(3) { animation-delay: 0.3s; }
+.welcome-doodle path:nth-of-type(4) { animation-delay: 0.45s; }
+.welcome-doodle path:nth-of-type(5) { animation-delay: 0.55s; }
+.welcome-doodle path:nth-of-type(6) { animation-delay: 0.62s; }
+.welcome-doodle path:nth-of-type(7) { animation-delay: 0.68s; }
+.welcome-doodle path:nth-of-type(8) { animation-delay: 0.74s; }
+.welcome-doodle path:nth-of-type(9) { animation-delay: 0.5s; }
+.welcome-doodle path:nth-of-type(10) { animation-delay: 0.5s; }
+.welcome-doodle path:nth-of-type(11) { animation-delay: 0.95s; }
+.welcome-word {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 76px;
+  line-height: 1;
+  letter-spacing: -3px;
+  animation: welcome-rise 0.6s 0.85s both;
+}
+.welcome-sub {
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-top: 10px;
+  animation: welcome-rise 0.6s 0.98s both;
+}
+.welcome-tag {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #f3d8be;
+  margin-top: 12px;
+  animation: welcome-rise 0.6s 1.08s both;
+}
+.welcome-loader {
+  width: min(220px, 50vw);
+  height: 1px;
+  margin-top: 28px;
+  overflow: hidden;
+  background: #ffffff2e;
+}
+.welcome-loader > span {
+  display: block;
+  height: 100%;
+  background: var(--peach);
+  transform-origin: left;
+  animation: loader-fill 1.6s 0.15s cubic-bezier(0.3, 0.6, 0.3, 1) both;
+}
+.welcome-hint {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #c3cdbf;
+  margin-top: 12px;
+  animation: welcome-rise 0.5s 0.4s both;
+}
+.welcome-skip {
+  position: absolute;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  min-height: 48px;
+  padding: 12px 18px;
+  background: transparent;
+  border: 1px solid #ffffff45;
+  color: var(--cream);
+  font-size: 12px;
+  letter-spacing: 1px;
+  touch-action: manipulation;
+}
+.welcome-skip:hover {
+  background: var(--peach);
+  border-color: var(--peach);
+  color: var(--forest-dark);
+}
+
+@keyframes doodle-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes welcome-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes welcome-content-in {
+  from { opacity: 0; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes loader-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (max-height: 620px) {
+  .welcome-inner { padding: 28px 20px 84px; }
+  .welcome-doodle { width: min(160px, 44vw); margin: 14px 0 2px; }
+  .welcome-word { font-size: 54px; }
+  .welcome-tag { font-size: 17px; margin-top: 8px; }
+  .welcome-loader { margin-top: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome { display: none; }
+  .welcome-doodle path, .welcome-word, .welcome-sub, .welcome-tag,
+  .welcome-hint, .welcome-eyebrow, .welcome-loader > span, .welcome-inner {
+    animation: none !important;
+  }
+}

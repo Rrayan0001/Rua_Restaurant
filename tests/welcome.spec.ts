@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("welcome intro plays the doodle, then dismisses and remembers", async ({ page }) => {
+test("welcome preview stays, dismisses, and does not consume the session", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/?welcome=stay");
   const overlay = page.getByRole("dialog", { name: "Welcome to Rua" });
@@ -18,14 +18,20 @@ test("welcome intro plays the doodle, then dismisses and remembers", async ({ pa
   expect(box!.height).toBeGreaterThanOrEqual(48);
   await skip.click();
   await expect(overlay).not.toBeVisible();
-  expect(await page.evaluate(() => sessionStorage.getItem("rua-welcome-seen"))).toBe("1");
+  // Preview mode bypasses the seen check and must not consume the once-per-session show.
+  expect(await page.evaluate(() => sessionStorage.getItem("rua-welcome-seen"))).toBeNull();
   await expect(page.locator("main")).not.toHaveAttribute("inert", "");
+  // Preview still forces a show on reload, even after dismiss.
+  await page.reload();
+  await expect(page.getByRole("dialog", { name: "Welcome to Rua" })).toBeVisible();
 });
 
 test("welcome auto-exits and stays dismissed on reload", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   await expect(page.getByRole("dialog", { name: "Welcome to Rua" })).not.toBeVisible({ timeout: 9000 });
+  // Normal visits remember the show once per tab session.
+  expect(await page.evaluate(() => sessionStorage.getItem("rua-welcome-seen"))).toBe("1");
   await page.reload();
   await expect(page.getByRole("dialog", { name: "Welcome to Rua" })).not.toBeVisible();
 });

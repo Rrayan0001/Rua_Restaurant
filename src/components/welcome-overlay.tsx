@@ -11,6 +11,7 @@ const EXIT_MS = 550;
  * Premium welcome intro: a hand-drawn doodle (arch + cloche + steam)
  * sketches itself in, the wordmark rises, then the veil lifts.
  * Shows once per tab session; skipped entirely for reduced motion.
+ * ?welcome=stay forces the show for previews without consuming the session.
  */
 export default function WelcomeOverlay() {
   const [visible, setVisible] = useState(false);
@@ -31,23 +32,33 @@ export default function WelcomeOverlay() {
         .forEach(element => {
           element.inert = false;
         });
-      try {
-        sessionStorage.setItem(SEEN_KEY, "1");
-      } catch {
-        /* private mode: replay next visit */
+      // Preview mode must not consume the once-per-session show.
+      const stay = new URLSearchParams(window.location.search).get("welcome") === "stay";
+      if (!stay) {
+        try {
+          sessionStorage.setItem(SEEN_KEY, "1");
+        } catch {
+          /* private mode: replay next visit */
+        }
       }
       setVisible(false);
     }, EXIT_MS);
   }, []);
 
   useEffect(() => {
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem(SEEN_KEY) === "1";
-    } catch {
-      seen = false;
+    // ?welcome=stay freezes the intro for deterministic testing and always
+    // forces a show (bypasses the seen check); production never uses it.
+    const stay = new URLSearchParams(window.location.search).get("welcome") === "stay";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!stay) {
+      let seen = false;
+      try {
+        seen = sessionStorage.getItem(SEEN_KEY) === "1";
+      } catch {
+        seen = false;
+      }
+      if (seen) return;
     }
-    if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Deferred a frame so the splash mounts after hydration without an SSR mismatch.
     const frame = requestAnimationFrame(() => {
       setVisible(true);
@@ -60,8 +71,7 @@ export default function WelcomeOverlay() {
     background.forEach(element => {
       element.inert = true;
     });
-    // ?welcome=stay freezes the intro for deterministic testing; production never uses it.
-    const stay = new URLSearchParams(window.location.search).get("welcome") === "stay";
+    // Auto-dismiss in production; preview mode stays until Skip/Escape.
     const auto = stay ? 0 : window.setTimeout(dismiss, SHOW_MS);
     const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {

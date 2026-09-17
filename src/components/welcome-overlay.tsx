@@ -101,21 +101,18 @@ export default function WelcomeOverlay() {
     >
       <div className="welcome-inner">
         <p className="welcome-eyebrow">A LITTLE ESCAPE IN YELAHANKA</p>
-        <svg className="welcome-doodle" viewBox="0 0 220 168" fill="none" aria-hidden="true">
-          <path pathLength={100} d="M42 150 V76 C42 46 68 26 110 26 C152 26 178 46 178 76 V150" />
-          <path pathLength={100} d="M58 150 V78 C58 54 76 38 110 38 C144 38 162 54 162 78 V150" />
-          <path pathLength={100} d="M80 116 C80 97 93 85 110 85 C127 85 140 97 140 116" />
-          <path pathLength={100} d="M72 116 H148" />
-          <path pathLength={100} d="M110 85 V77" />
-          <path pathLength={100} d="M92 66 c-5-6 5-9 0-15" />
-          <path pathLength={100} d="M110 66 c-5-6 5-9 0-15" />
-          <path pathLength={100} d="M128 66 c-5-6 5-9 0-15" />
-          <path pathLength={100} d="M28 150 H52" />
-          <path pathLength={100} d="M168 150 H192" />
-          <path
-            pathLength={100}
-            d="M188 30 l2.2 5.2 5.2 2.2 -5.2 2.2 -2.2 5.2 -2.2-5.2 -5.2-2.2 5.2-2.2 Z"
-          />
+        <svg className="welcome-doodle" viewBox="0 0 171 168" fill="none" aria-hidden="true">
+          <path pathLength={100} d="M85.5 3.5 a80 80 0 1 0 0.1 0" />
+          <path pathLength={100} d="M85.5 10.5 a73 73 0 1 0 0.1 0" />
+          <path pathLength={100} d="M85.5 10.5 V46" />
+          <path pathLength={100} d="M70 52 L32.5 30.5 M101 52 L138.5 30.5" />
+          <path pathLength={100} d="M31 96 L10.5 83.5 M140 96 L160.5 83.5" />
+          <path pathLength={100} d="M49 106.5 C40 106 33 103 31 98 C29 93 34 84 45 74 C62 58 77 47 85.5 46 C94 47 109 58 126 74 C137 84 142 93 140 98 C138 103 131 106 122 106.5" />
+          <path pathLength={100} d="M85.5 46 V80 M85.5 46 C80 56 73 68 62 78 M85.5 46 C91 56 98 68 109 78" />
+          <path pathLength={100} d="M49 106.5 V131.5 M122 106.5 V131.5" />
+          <path pathLength={100} d="M27 131.5 H144" />
+          <path pathLength={100} d="M73.5 131.5 V110 C73.5 102.5 78.5 97.5 85.5 97.5 C92.5 97.5 97.5 102.5 97.5 110 V131.5" />
+          <path pathLength={100} d="M73.5 131.5 L55 154 M97.5 131.5 L116 154" />
         </svg>
         <p className="welcome-word">rua</p>
         <p className="welcome-sub">YELAHANKA</p>

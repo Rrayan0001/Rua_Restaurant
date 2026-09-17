@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 171 168" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Outer circle -->
+  <circle cx="85.5" cy="83.5" r="82" />
+  <!-- Inner circle -->
+  <circle cx="85.5" cy="83.5" r="75" />
+  <!-- Top vertical ray -->
+  <path d="M85.5 8.5 V46" />
+  <!-- Upper diagonal rays -->
+  <path d="M70 52 L32.5 30.5" />
+  <path d="M101 52 L138.5 30.5" />
+  <!-- Lower diagonal rays -->
+  <path d="M31 96 L10.5 83.5" />
+  <path d="M140 96 L160.5 83.5" />
+  <!-- Thatch roof dome -->
+  <path d="M85.5 46 C77 47 62 58 45 74 C34 84 29 93 31 98 C33 103 40 106 49 106.5" />
+  <path d="M85.5 46 C94 47 109 58 126 74 C137 84 142 93 140 98 C138 103 131 106 122 106.5" />
+  <!-- Roof thatch internal ribs -->
+  <path d="M85.5 46 V80" />
+  <path d="M85.5 46 C80 56 73 68 62 78" />
+  <path d="M85.5 46 C91 56 98 68 109 78" />
+  <!-- Hut walls -->
+  <path d="M49 106.5 V131.5" />
+  <path d="M122 106.5 V131.5" />
+  <!-- Arched doorway -->
+  <path d="M73.5 131.5 V110 C73.5 102.5 78.5 97.5 85.5 97.5 C92.5 97.5 97.5 102.5 97.5 110 V131.5" />
+  <!-- Ground horizon line -->
+  <path d="M27 131.5 H144" />
+  <!-- Pathway lines -->
+  <path d="M73.5 131.5 L55 154" />
+  <path d="M97.5 131.5 L116 154" />
+</svg>
